@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="index.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <title>Word Frequency Counter</title>
+  <meta name="description" content="The Frequency Word Counter you need for checking word frequency in any source of text.">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="index.js" defer></script>
+  <style>
+    :root {
+      --black: black;
+      --white: white;
+      --navy: #14287A;
+      --blue: #0D6EFD;
+      --bluegray: #38467A;
+      --bluewhite: #738EFB;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #738efb48;
+    }
+    .title {
+      background-color: var(--navy);
+      color: var(--white);
+    }
+    .small {
+      border: 1px var(--navy) solid;
+      border-radius: 5px;
+      margin: .1rem;
+      padding: 1rem;
+      text-align: center;
+    }
+    .small2 {
+      margin: .1rem;
+      padding: 1rem;
+      text-align: center;
+    }
+    .cust-box, .res-box {
+      padding: 5rem;
+    }
+    .cust-box, .res-box {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+    .cust-box div, #results div {
+      margin: 0.5rem;
+      padding: 0.1rem 0.7rem 0.2rem 0.7rem;
+      border: solid .5px var(--bluegray);
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      font-weight: 700;
+      background-color: var(--white);
+      color: var(--navy);
+    }
+    #results div {
+      cursor: default;
+    }
+    #word-input {
+      border: solid var(--navy) 2px;
+      background-color: var(--bluegray);
+      color: var(--white)
+    }
+    .results {
+      font-size: 2rem;
+    }
+    #clear-button {
+      margin: .5rem;
+    }
+    /* #word-container {
+      padding: 1rem;
+    } */
+    .desc {
+      padding: 2rem;
+      font-size: large;
+    }
+    .footer {
+      padding: 1rem;
+    }
+    #comment {
+      width: 100%;
+      border: solid var(--navy) 2px;
+      background-color: var(--bluegray);
+      color: var(--white)
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row title">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10"><h1>Word Frequency Counter</h1></div>
+      <div class="col-sm-1"></div>
+    </div>
+    <!-- description -->
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10 small2 desc">
+        This word frequency counter is simple to use but very versatile. It is very useful for analizing papers for specific word patterns or for checking your own writing for repeated vocabulary. 
+        <br><br>
+        Using the site is easy. In the custom words input box, type the specific words you want to look for. These are the words the frequency counter will look for. For every word you type, click the 'enter' key and it will add them to the Custome Words box next to it. If you have a typo or want to delete a word from the box, just click it to delete it. You can clear all the words by clicking the 'Clear Words' button. When you are ready, click the 'Scan for Words' button and it will show you the results below.
+        <br><br>
+        This website was designed by William Thackeray. Feedback is welcome on what improvments could be made to this product. 
+        <br><br>
+        Thank you for using this Word Frequency Counter.
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <!-- custom words -->
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-3 small2">
+        <h3>Custom Words</h3>
+        <input class="form-control" id="word-input" type="text">
+        <button type="button" class="btn btn-primary btn-sm" id="clear-button">Clear Words</button>
+      </div>
+      <div class="col-sm-7 small cust-box" id="word-container"></div>
+      <div class="col-sm-1"></div>
+    </div>
+    <!-- Text Box -->
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10 small2 text-box">
+        <h3>Text Input</h3>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <!-- scan button -->
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-3 small2">
+        <button type="button" class="scan-button btn btn-primary btn-lg" id="scan-button">Scan for Words</button>
+      </div>
+      <div class="col-sm-8"></div>
+    </div>
+    <!-- results -->
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-3 small2 results">Results</div>
+      <div class="col-sm-7 small res-box" id="results"></div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 footer"></div>
+    </div>
+  </div>
+</body>
