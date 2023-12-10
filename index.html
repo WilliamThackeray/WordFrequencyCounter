@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="index.css"> -->
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <title>Word Frequency Counter</title>
   <meta name="description" content="The Frequency Word Counter you need for checking word frequency in any source of text.">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="index.js" defer></script>
+  <script src="https://kit.fontawesome.com/13d2b20ea3.js" crossorigin="anonymous"></script>
   <style>
     :root {
-      --black: black;
+      --black: #1f1f1f;
       --white: white;
       --navy: #14287A;
       --blue: #0D6EFD;
@@ -23,11 +24,14 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #738efb48;
+      /* background-color: #738efb48; */
+      background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='40' height='40' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(135)'%3E%3Crect width='100%25' height='100%25' fill='%232a4365'/%3E%3Cpath d='M1 20L20 0L0 0zM20 40L39 20L40 40z' fill='%231a202c'/%3E%3Cpath d='M0 20L18 40L20 20L0 20M20 20L22 0L40 20L20 20z' fill='%23ecc94b'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ");
+      color: var(--black)
     }
     .title {
       background-color: var(--navy);
       color: var(--white);
+      text-align: center;
     }
     .small {
       border: 1px var(--navy) solid;
@@ -69,7 +73,7 @@
     #word-input {
       border: solid var(--navy) 2px;
       background-color: var(--bluegray);
-      color: var(--white)
+      color: var(--black)
     }
     .results {
       font-size: 2rem;
@@ -86,6 +90,11 @@
     }
     .footer {
       padding: 1rem;
+      text-align: center;
+    }
+    .footer a {
+      padding: 0 1rem;
+      text-decoration: none;
     }
     #comment {
       width: 100%;
@@ -93,66 +102,92 @@
       background-color: var(--bluegray);
       color: var(--white)
     }
+    .content {
+      background-color: rgba(255, 255, 255, 0.918);
+    }
+    #word-input, #word-container, #results {
+      background-color: white;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row title">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-10"><h1>Word Frequency Counter</h1></div>
-      <div class="col-sm-1"></div>
-    </div>
-    <!-- description -->
-    <div class="row">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-10 small2 desc">
-        This word frequency counter is simple to use but very versatile. It is very useful for analizing papers for specific word patterns or for checking your own writing for repeated vocabulary. 
-        <br><br>
-        Using the site is easy. In the custom words input box, type the specific words you want to look for. These are the words the frequency counter will look for. For every word you type, click the 'enter' key and it will add them to the Custome Words box next to it. If you have a typo or want to delete a word from the box, just click it to delete it. You can clear all the words by clicking the 'Clear Words' button. When you are ready, click the 'Scan for Words' button and it will show you the results below.
-        <br><br>
-        This website was designed by William Thackeray. Feedback is welcome on what improvments could be made to this product. 
-        <br><br>
-        Thank you for using this Word Frequency Counter.
+    <div class="container">
+      <div class="row title">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10"><h1>Word Frequency Counter</h1></div>
+        <div class="col-sm-1"></div>
       </div>
-      <div class="col-sm-1"></div>
-    </div>
-    <!-- custom words -->
-    <div class="row">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-3 small2">
-        <h3>Custom Words</h3>
-        <input class="form-control" id="word-input" type="text">
-        <button type="button" class="btn btn-primary btn-sm" id="clear-button">Clear Words</button>
+      <!-- description -->
+      <div class="row content">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 small2 desc">
+          This word frequency counter is simple to use but very versatile. It is very useful for analizing papers for specific word patterns or for checking your own writing for repeated vocabulary. 
+          <br><br>
+          Using the site is easy. In the custom words input box, type the specific words you want to look for. These are the words the frequency counter will look for. For every word you type, click the 'enter' key and it will add them to the Custome Words box next to it. If you have a typo or want to delete a word from the box, just click it to delete it. You can clear all the words by clicking the 'Clear Words' button. When you are ready, click the 'Scan for Words' button and it will show you the results below.
+          <br><br>
+          This website was designed by William Thackeray. Feedback is welcome on what improvments could be made to this product. 
+          <br><br>
+          Thank you for using this Word Frequency Counter.
+        </div>
+        <div class="col-sm-1"></div>
       </div>
-      <div class="col-sm-7 small cust-box" id="word-container"></div>
-      <div class="col-sm-1"></div>
-    </div>
-    <!-- Text Box -->
-    <div class="row">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-10 small2 text-box">
-        <h3>Text Input</h3>
-        <textarea class="form-control" rows="5" id="comment"></textarea>
+      <!-- custom words -->
+      <div class="row content">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3 small2">
+          <h3>Custom Words</h3>
+          <input class="form-control" id="word-input" type="text">
+          <button type="button" class="btn btn-primary btn-sm" id="clear-button">Clear Words</button>
+        </div>
+        <div class="col-sm-7 small cust-box" id="word-container"></div>
+        <div class="col-sm-1"></div>
       </div>
-      <div class="col-sm-1"></div>
-    </div>
-    <!-- scan button -->
-    <div class="row">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-3 small2">
-        <button type="button" class="scan-button btn btn-primary btn-lg" id="scan-button">Scan for Words</button>
+      <!-- Text Box -->
+      <div class="row content">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 small2 text-box">
+          <h3>Text Input</h3>
+          <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+        <div class="col-sm-1"></div>
       </div>
-      <div class="col-sm-8"></div>
+      <!-- File Entry -->
+      <!-- <div class="row content">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 small2 text-box">
+          <h3>Text Input</h3>
+          <input class="form-control" type="file" id="tile" name="file">
+        </div>
+        <div class="col-sm-1"></div>
+      </div> -->
+      <!-- scan button -->
+      <div class="row content">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3 small2">
+          <button type="button" class="scan-button btn btn-primary btn-lg" id="scan-button">Scan for Words</button>
+        </div>
+        <div class="col-sm-8"></div>
+      </div>
+      <!-- results -->
+      <div class="row content">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-3 small2 results">Results</div>
+        <div class="col-sm-7 small res-box" id="results"></div>
+        <div class="col-sm-1"></div>
+      </div>
+      <div class="row content">
+        <div class="col-sm-12 footer">
+
+          <a href="https://github.com/WilliamThackeray" target="_blank">
+            <i class="fa-brands fa-github" style="color: #14287a;"></i>
+          </a>
+
+          <a href="https://twitter.com/Thack_Whack" target="_blank">
+            <i class="fa-brands fa-twitter" style="color: #14287a;"></i>
+          </a>
+
+        </div>
+      </div>
     </div>
-    <!-- results -->
-    <div class="row">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-3 small2 results">Results</div>
-      <div class="col-sm-7 small res-box" id="results"></div>
-      <div class="col-sm-1"></div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12 footer"></div>
-    </div>
-  </div>
+
 </body>
